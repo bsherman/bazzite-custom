@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '05 10 * * *'  # 10:05am UTC everyday
+    - cron: '45 17 * * 2,5'  # 17:45 UTC tues thurs
   push:
     branches:
       - main
@@ -17,10 +17,10 @@ on:
 # The values here are defaults and should be modified if using a different image, needing
 # nvidia, a specific nvidia driver, or a different Fedora version.
 env:
-  MY_IMAGE_NAME: "custom-silverblue"  # the name of the image produced by this build
-  ARG_SOURCE_IMAGE: "silverblue"  # see Containerfile for list of possible upstream images
-  ARG_SOURCE_SUFFIX: "main"  # see Containerfile
-  ARG_FEDORA_VERSION: "38"  # see Containerfile
+  MY_IMAGE_NAME: "bazzite-custom"  # the name of the image produced by this build
+  ARG_SOURCE_IMAGE: "bazzite-deck"  # see Containerfile for list of possible upstream images
+  ARG_SOURCE_SUFFIX: "gnome"  # see Containerfile
+  #ARG_FEDORA_VERSION: "38"  # see Containerfile ... I replaced with matrix for fedora version
   ARG_NVIDIA_VERSION: ""  # see Containerfile
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}"  # do not edit
 
@@ -34,6 +34,11 @@ jobs:
       packages: write
       id-token: write
 
+   strategy:
+      fail-fast: false
+      matrix:
+        fedora_version: [38, 39]
+
     steps:
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
@@ -45,7 +50,7 @@ jobs:
         run: |
           # Generate a timestamp for creating an image version history
           TIMESTAMP="$(date +%Y%m%d)"
-          VARIANT="${{ env.ARG_FEDORA_VERSION }}"
+          VARIANT="${{ matrix.fedora_version }}"
 
           COMMIT_TAGS=()
           BUILD_TAGS=()
@@ -66,7 +71,6 @@ jobs:
           done
 
           BUILD_TAGS+=("${TIMESTAMP}")
-          BUILD_TAGS+=("latest")
 
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
               echo "Generated the following commit tags: "
@@ -89,7 +93,7 @@ jobs:
       - name: Get current version
         id: labels
         run: |
-          ver=$(skopeo inspect docker://ghcr.io/ublue-os/${{ env.ARG_SOURCE_IMAGE }}-${{ env.ARG_SOURCE_SUFFIX }}:${{ env.ARG_FEDORA_VERSION }}${{ env.ARG_NVIDIA_VERSION }} | jq -r '.Labels["org.opencontainers.image.version"]')
+          ver=$(skopeo inspect docker://ghcr.io/ublue-os/${{ env.ARG_SOURCE_IMAGE }}-${{ env.ARG_SOURCE_SUFFIX }}:${{ matrix.fedora_version }}${{ env.ARG_NVIDIA_VERSION }} | jq -r '.Labels["org.opencontainers.image.version"]')
           echo "VERSION=$ver" >> $GITHUB_OUTPUT
 
       # Build metadata
@@ -121,7 +125,7 @@ jobs:
           build-args: |
             SOURCE_IMAGE=${{ env.ARG_SOURCE_IMAGE }}
             SOURCE_SUFFIX=${{ env.ARG_SOURCE_SUFFIX }}
-            FEDORA_VERSION=${{ env.ARG_FEDORA_VERSION }}
+            FEDORA_VERSION=${{ matrix.fedora_version }}
             NVIDIA_VERSION=${{ env.ARG_NVIDIA_VERSION }}
           labels: ${{ steps.meta.outputs.labels }}
           oci: false

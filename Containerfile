@@ -5,9 +5,9 @@
 ## build.xml will override changes here.
 
 ## SOURCE_IMAGE arg can be anything from ublue upstream: silverblue, kinoite, sericea, vauxite, mate, lxqt, base
-ARG SOURCE_IMAGE="silverblue"
+ARG SOURCE_IMAGE="bazzite-deck"
 ## SOURCE_SUFFIX arg should be "main", nvidia users should use "nvidia"
-ARG SOURCE_SUFFIX="main"
+ARG SOURCE_SUFFIX="gnome"
 ## FEDORA_VERSION arg must be a version built by ublue: 37 or 38 as of today
 ARG FEDORA_VERSION="38"
 ## NVIDIA_VERSION should only be changed if the user needs a specific nvidia driver version
@@ -26,21 +26,19 @@ RUN mkdir -p /var/lib/alternatives
 
 
 ### 4. MODIFICATIONS
-## make modifications desired in your image and install packages here, a few examples follow
+# install packages
+RUN rpm-ostree install iperf3 moby-engine strace xwaylandvideobridge
 
-# install a package from standard fedora repo
-RUN rpm-ostree install screen
-
-# install a package from rpmfusion repo
-RUN rpm-ostree install vlc
+### github direct installs
+RUN /tmp/github-release-install.sh twpayne/chezmoi x86_64 && \
+    /tmp/github-release-install.sh wez/wezterm fedora38.x86_64
 
 # static binaries can sometimes by added using a COPY directive like these below. 
-COPY --from=cgr.dev/chainguard/kubectl:latest /usr/bin/kubectl /usr/bin/kubectl
-#COPY --from=docker.io/docker/compose-bin:latest /docker-compose /usr/bin/docker-compose
+COPY --from=docker.io/docker/compose-bin:latest /docker-compose /usr/bin/docker-compose
 
-# modify default timeouts on system to prevent slow reboots from services that won't stop
-RUN sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf && \
-    sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf
+# disable docker by default
+RUN systemctl disable docker.service && \
+    systemctl disable docker.socket
 
 
 ### 5. POST-MODIFICATIONS
