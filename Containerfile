@@ -23,7 +23,8 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${FEDORA_VERSION}${NVIDIA
 ### 3. PRE-MODIFICATIONS
 ## this directory is needed to prevent failure with some RPM installs
 RUN mkdir -p /var/lib/alternatives
-
+# needed to install github rpms directly
+ADD github-release-install.sh /tmp/
 
 ### 4. MODIFICATIONS
 # install packages
