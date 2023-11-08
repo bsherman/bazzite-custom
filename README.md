@@ -16,7 +16,6 @@ In addition to all the goodies provided by Bazzite...
 Installs:
 - chezmoi - for managing my dotfiles
 - iperf3 - for network testing
-- moby-engine / docker-compose - docker (disabled by default)
 - wezterm - my preferred terminal
 - xwaylandvideobridge - for sharing wayland apps/screen in Xwayland apps (like Discord)
 

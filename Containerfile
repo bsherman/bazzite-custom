@@ -28,7 +28,7 @@ ADD github-release-install.sh /tmp/
 
 ### 4. MODIFICATIONS
 # install packages
-RUN rpm-ostree install iperf3 moby-engine strace xwaylandvideobridge
+RUN rpm-ostree install iperf3 xwaylandvideobridge
 
 ### github direct installs
 RUN /tmp/github-release-install.sh twpayne/chezmoi x86_64 && \
@@ -36,10 +36,6 @@ RUN /tmp/github-release-install.sh twpayne/chezmoi x86_64 && \
 
 # static binaries can sometimes by added using a COPY directive like these below. 
 COPY --from=docker.io/docker/compose-bin:latest /docker-compose /usr/bin/docker-compose
-
-# disable docker by default
-RUN systemctl disable docker.service && \
-    systemctl disable docker.socket
 
 
 ### 5. POST-MODIFICATIONS
