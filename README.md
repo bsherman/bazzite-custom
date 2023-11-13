@@ -2,11 +2,7 @@
 
 ## Overview
 
-This is my slightly tweaked version of [Bazzite](https://github.com/ublue-os/bazzite/), specifically this is "deck" version running GNOME. 
-
-It can run directly on the [Steam Deck](https://www.steamdeck.com/) in gaming mode.
-
-When run in desktop mode, it uses the [GNOME](https://www.gnome.org/) desktop environment.
+This is my slightly tweaked version of [Bazzite](https://github.com/ublue-os/bazzite/), specifically this is "desktop" version running GNOME.
 
 
 ## Detail
