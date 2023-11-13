@@ -16,8 +16,8 @@ In addition to all the goodies provided by Bazzite...
 Installs:
 - chezmoi - for managing my dotfiles
 - iperf3 - for network testing
+- nmap - for network testing
 - wezterm - my preferred terminal
-- xwaylandvideobridge - for sharing wayland apps/screen in Xwayland apps (like Discord)
 
 Versions Built:
 - Bazzite based on Fedora 38

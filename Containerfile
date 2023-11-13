@@ -9,7 +9,7 @@ ARG SOURCE_IMAGE="bazzite-deck"
 ## SOURCE_SUFFIX arg should be "main", nvidia users should use "nvidia"
 ARG SOURCE_SUFFIX="gnome"
 ## FEDORA_VERSION arg must be a version built by ublue: 37 or 38 as of today
-ARG FEDORA_VERSION="38"
+ARG FEDORA_VERSION="39"
 ## NVIDIA_VERSION should only be changed if the user needs a specific nvidia driver version
 ##   if needing driver 535, this should be set to "-535". It is important to include the hyphen
 ARG NVIDIA_VERSION=""
@@ -28,7 +28,7 @@ ADD github-release-install.sh /tmp/
 
 ### 4. MODIFICATIONS
 # install packages
-RUN rpm-ostree install iperf3 xwaylandvideobridge
+RUN rpm-ostree install --idempotent ipcalc iperf3 netcat nmap
 
 ### github direct installs
 RUN /tmp/github-release-install.sh twpayne/chezmoi x86_64 && \
