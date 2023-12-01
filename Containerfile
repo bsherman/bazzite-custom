@@ -28,7 +28,13 @@ ADD github-release-install.sh /tmp/
 
 ### 4. MODIFICATIONS
 # install packages
-RUN rpm-ostree install --idempotent ipcalc iperf3 netcat nmap
+RUN rpm-ostree install --idempotent \
+   gnome-shell-extension-dash-to-dock \
+   gnome-shell-extension-no-overview \
+   ipcalc \
+   iperf3 \
+   netcat \
+   nmap
 
 ### github direct installs
 RUN /tmp/github-release-install.sh twpayne/chezmoi x86_64 && \
