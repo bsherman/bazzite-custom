@@ -5,7 +5,7 @@
 ## build.xml will override changes here.
 
 ## SOURCE_IMAGE arg can be anything from ublue upstream: silverblue, kinoite, sericea, vauxite, mate, lxqt, base
-ARG SOURCE_IMAGE="bazzite-deck"
+ARG SOURCE_IMAGE="bazzite"
 ## SOURCE_SUFFIX arg should be "main", nvidia users should use "nvidia"
 ARG SOURCE_SUFFIX="gnome"
 ## FEDORA_VERSION arg must be a version built by ublue: 37 or 38 as of today
@@ -33,8 +33,19 @@ RUN rpm-ostree install --idempotent \
    gnome-shell-extension-no-overview \
    ipcalc \
    iperf3 \
+   libvirt-daemon \
+   libvirt-daemon-config-network \
+   libvirt-daemon-driver-interface \
+   libvirt-daemon-driver-network \
+   libvirt-daemon-driver-nwfilter \
+   libvirt-daemon-driver-qemu \
+   libvirt-daemon-driver-secret \
+   libvirt-daemon-driver-storage-core \
+   libvirt-daemon-driver-storage-disk \
+   libvirt-daemon-driver-storage-scsi \
    netcat \
-   nmap
+   nmap \
+   qemu-kvm
 
 ### github direct installs
 RUN /tmp/github-release-install.sh twpayne/chezmoi x86_64 && \

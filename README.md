@@ -12,6 +12,7 @@ In addition to all the goodies provided by Bazzite...
 Installs:
 - chezmoi - for managing my dotfiles
 - iperf3 - for network testing
+- libvirtd and qemu backend for running kvm VMs (use a client from distrobox, etc)
 - nmap - for network testing
 - wezterm - my preferred terminal
 
