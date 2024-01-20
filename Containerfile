@@ -33,6 +33,7 @@ RUN rpm-ostree install --idempotent \
    gnome-shell-extension-no-overview \
    ipcalc \
    iperf3 \
+   langpacks-en \
    libvirt-daemon \
    libvirt-daemon-config-network \
    libvirt-daemon-driver-interface \
