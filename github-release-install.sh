@@ -14,11 +14,13 @@
 
 ORG_PROJ=${1}
 ARCH_FILTER=${2}
+LATEST=${3}
 
 usage() {
   echo "$0 ORG_PROJ ARCH_FILTER"
   echo "    ORG_PROJ    - organization/projectname"
   echo "    ARCH_FILTER - optional extra filter to further limit rpm selection"
+  echo "    LATEST      - optional tag override for latest release (eg, nightly-dev)"
 
 }
 
@@ -32,9 +34,15 @@ if [ -z ${ARCH_FILTER} ]; then
   exit 2
 fi
 
+if [ -z ${LATEST} ]; then
+  RELTAG="latest"
+else
+  RELTAG="tags/${LATEST}"
+fi
+
 set -ouex pipefail
 
-API="https://api.github.com/repos/${ORG_PROJ}/releases/latest"
+API="https://api.github.com/repos/${ORG_PROJ}/releases/${RELTAG}"
 RPM_URLS=$(curl --retry 3 --retry-delay 2 --retry-all-errors -sL ${API} \
   | jq \
     -r \
