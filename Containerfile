@@ -19,6 +19,8 @@ ARG NVIDIA_VERSION=""
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
 FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${FEDORA_VERSION}${NVIDIA_VERSION}
 
+ARG FEDORA_VERSION="39"
+
 
 ### 3. PRE-MODIFICATIONS
 ## this directory is needed to prevent failure with some RPM installs
