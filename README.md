@@ -14,17 +14,16 @@ Installs:
 - iperf3 - for network testing
 - libvirtd and qemu backend for running kvm VMs (use a client from distrobox, etc)
 - nmap - for network testing
+- sunshine - for moonlight compatible streaming
 - wezterm - my preferred terminal
 
 Versions Built:
-- Bazzite based on Fedora 38
 - Bazzite based on Fedora 39
 
 Installation:
 
 I assume you've installed using Bazzite's instructions, or at the least, you've installed  [Silverblue](https://fedoraproject.org/silverblue/download/).
 
-Rebase to either 38 or 39 with one of the following commands:
+Rebase to 39 with the following command:
 
-    sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/bsherman/bazzite-custom:38
     sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/bsherman/bazzite-custom:39
