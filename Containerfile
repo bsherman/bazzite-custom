@@ -52,7 +52,7 @@ RUN rpm-ostree install --idempotent \
 
 ### github direct installs
 RUN /tmp/github-release-install.sh twpayne/chezmoi x86_64 && \
-    /tmp/github-release-install.sh LizardByte/Sunshine fedora-${FEDORA_VERSION}-x86_64 nightly-dev && \
+    /tmp/github-release-install.sh LizardByte/Sunshine fedora-${FEDORA_VERSION}-amd64 && \
     /tmp/github-release-install.sh wez/wezterm fedora${FEDORA_VERSION}.x86_64
 
 ### post install customization
