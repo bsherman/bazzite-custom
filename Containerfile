@@ -29,8 +29,14 @@ RUN mkdir -p /var/lib/alternatives
 # needed to install github rpms directly
 ADD github-release-install.sh /tmp/
 
+COPY --from=ghcr.io/ublue-os/akmods:main-${FEDORA_VERSION} /rpms/kmods/*xpadneo*.rpm /tmp/akmods-rpms/
+
+
 ### 4. MODIFICATIONS
-# install packages
+# install custom akmods packages
+RUN rpm-ostree install /tmp/akmods-rpms/*.rpm
+
+# install custom packages
 RUN rpm-ostree install --idempotent \
    gnome-shell-extension-dash-to-dock \
    gnome-shell-extension-no-overview \
