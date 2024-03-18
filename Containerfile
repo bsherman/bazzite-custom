@@ -29,13 +29,15 @@ RUN mkdir -p /var/lib/alternatives
 # needed to install github rpms directly
 ADD github-release-install.sh /tmp/
 
-# akmods can be main (if bsherman custom bazzite) or fsync (if official bazzite)
-COPY --from=ghcr.io/ublue-os/akmods:fsync-${FEDORA_VERSION} /rpms/kmods/*xpadneo*.rpm /tmp/akmods-rpms/
+# akmods can be main (if bsherman custom bazzite) or 6.7.9-204.fsync (if official bazzite)
+COPY --from=ghcr.io/ublue-os/akmods:6.7.9-204.fsync-${FEDORA_VERSION} /rpms/kmods/*xpadneo*.rpm /tmp/akmods-rpms/
 
 
 ### 4. MODIFICATIONS
 # install custom akmods packages
-RUN rpm-ostree install /tmp/akmods-rpms/*.rpm
+RUN curl https://negativo17.org/repos/fedora-multimedia.repo -o /etc/yum.repos.d/negativo17-fedora-multimedia.repo && \
+    rpm-ostree install /tmp/akmods-rpms/*.rpm && \
+    rm /etc/yum.repos.d/negativo17-fedora-multimedia.repo
 
 # install custom packages
 RUN rpm-ostree install --idempotent \
