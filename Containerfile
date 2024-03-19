@@ -7,7 +7,7 @@
 ## SOURCE_IMAGE arg can be anything from ublue upstream: silverblue, kinoite, sericea, vauxite, mate, lxqt, base
 ARG SOURCE_IMAGE="bazzite"
 ## SOURCE_SUFFIX arg should be "main", nvidia users should use "nvidia"
-ARG SOURCE_SUFFIX="gnome"
+ARG SOURCE_SUFFIX=""
 ## FEDORA_VERSION arg must be a version built by ublue: 37 or 38 as of today
 ARG FEDORA_VERSION="39"
 ## NVIDIA_VERSION should only be changed if the user needs a specific nvidia driver version
@@ -18,7 +18,7 @@ ARG NVIDIA_VERSION=""
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
 #FROM ghcr.io/bsherman/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${FEDORA_VERSION}${NVIDIA_VERSION}
-FROM ghcr.io/ublue-os/${SOURCE_IMAGE}-${SOURCE_SUFFIX}:${FEDORA_VERSION}${NVIDIA_VERSION}
+FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${FEDORA_VERSION}${NVIDIA_VERSION}
 
 ARG FEDORA_VERSION="39"
 
@@ -41,8 +41,6 @@ RUN curl https://negativo17.org/repos/fedora-multimedia.repo -o /etc/yum.repos.d
 
 # install custom packages
 RUN rpm-ostree install --idempotent \
-   gnome-shell-extension-dash-to-dock \
-   gnome-shell-extension-no-overview \
    ipcalc \
    iperf3 \
    langpacks-en \
@@ -59,6 +57,8 @@ RUN rpm-ostree install --idempotent \
    netcat \
    nmap \
    qemu-kvm
+   #gnome-shell-extension-dash-to-dock \
+   #gnome-shell-extension-no-overview \
 
 ### github direct installs
 RUN /tmp/github-release-install.sh twpayne/chezmoi x86_64 && \
