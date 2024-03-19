@@ -56,7 +56,8 @@ RUN rpm-ostree install --idempotent \
    libvirt-daemon-driver-storage-scsi \
    netcat \
    nmap \
-   qemu-kvm
+   qemu-kvm \
+   virt-manager
    #gnome-shell-extension-dash-to-dock \
    #gnome-shell-extension-no-overview \
 
