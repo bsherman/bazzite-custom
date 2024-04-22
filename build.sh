@@ -13,15 +13,33 @@ RELEASE="$(rpm -E %fedora)"
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-rpm-ostree install screen
+#rpm-ostree install screen
 
 # this would install a package from rpmfusion
 #RUN rpm-ostree install vlc
+rpm-ostree install --idempotent \
+   ipcalc \
+   iperf3 \
+   langpacks-en \
+   libvirt-daemon \
+   libvirt-daemon-config-network \
+   libvirt-daemon-driver-interface \
+   libvirt-daemon-driver-network \
+   libvirt-daemon-driver-nwfilter \
+   libvirt-daemon-driver-qemu \
+   libvirt-daemon-driver-secret \
+   libvirt-daemon-driver-storage-core \
+   libvirt-daemon-driver-storage-disk \
+   libvirt-daemon-driver-storage-scsi \
+   netcat \
+   nmap \
+   qemu-kvm \
+   virt-manager
 
 
+/tmp/github-release-install.sh twpayne/chezmoi x86_64
+/tmp/github-release-install.sh LizardByte/Sunshine fedora-${FEDORA_VERSION}-amd64
 
 #### Change to System Configuration Files
 
-# this example modifies default timeouts to prevent slow reboots from services that won't stop
-sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf
-sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf
+systemctl enable sunshine-workaround.service
