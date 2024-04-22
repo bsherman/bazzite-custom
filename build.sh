@@ -38,7 +38,7 @@ rpm-ostree install --idempotent \
 
 
 /tmp/github-release-install.sh twpayne/chezmoi x86_64
-/tmp/github-release-install.sh LizardByte/Sunshine fedora-${FEDORA_VERSION}-amd64
+/tmp/github-release-install.sh LizardByte/Sunshine fedora-${RELEASE}-amd64
 
 #### Change to System Configuration Files
 
