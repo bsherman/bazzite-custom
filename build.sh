@@ -17,6 +17,14 @@ RELEASE="$(rpm -E %fedora)"
 
 # this would install a package from rpmfusion
 #RUN rpm-ostree install vlc
+
+# adds the xpadneo kmod for bluetooth xbox one controller support
+curl https://negativo17.org/repos/fedora-multimedia.repo -o /etc/yum.repos.d/negativo17-fedora-multimedia.repo
+rpm-ostree install /tmp/akmods-rpms/*.rpm
+rm /etc/yum.repos.d/negativo17-fedora-multimedia.repo
+
+
+# adds my custom packages
 rpm-ostree install --idempotent \
    ipcalc \
    iperf3 \

@@ -47,6 +47,8 @@ FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${VERSION}
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
+COPY --from=ghcr.io/ublue-os/akmods:main-40 /rpms/kmods/*xpadneo*.rpm /tmp/akmods-rpms/
+
 COPY *.sh /tmp/
 
 RUN mkdir -p /var/lib/alternatives && \
