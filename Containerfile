@@ -35,14 +35,13 @@ ARG SOURCE_IMAGE="bazzite"
 # - (and the above with testing rather than stable)
 ARG SOURCE_SUFFIX=""
 
-## FEDORA_VERSION arg must be a version built by ublue: eg, 39 or 40
-ARG FEDORA_VERSION="40"
+## VERSION arg must be a version built by ublue: eg, 39, 40, gts or latest
+ARG VERSION="40-testing"
 
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
-FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${FEDORA_VERSION}-testing
-# temporarily bazzite 40 is tagged `40-testing`
+FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${VERSION}
 
 ### 3. MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
