@@ -35,13 +35,13 @@ ARG SOURCE_IMAGE="bazzite"
 # - (and the above with testing rather than stable)
 ARG SOURCE_SUFFIX=""
 
-## VERSION arg must be a version built by ublue: eg, 39, 40, gts or latest
-ARG VERSION="40-testing"
+## SOURCE_TAG arg must be a version built by ublue: eg, 39, 40, gts or latest
+ARG SOURCE_TAG="40-testing"
 
 
 ### 2. SOURCE IMAGE
 ## this is a standard Containerfile FROM using the build ARGs above to select the right upstream image
-FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${VERSION}
+FROM ghcr.io/ublue-os/${SOURCE_IMAGE}${SOURCE_SUFFIX}:${SOURCE_TAG}
 
 ### 3. MODIFICATIONS
 ## make modifications desired in your image and install packages by modifying the build.sh script
