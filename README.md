@@ -15,6 +15,7 @@ Installs:
 - gh - github client
 - ipcalc - for network testing
 - iperf3 - for network testing
+- KDE PIM apps
 - libvirtd - qemu backend for running kvm VMs plus virt-manager
 - netcat - for network testing
 - nmap - for network testing

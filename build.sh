@@ -44,6 +44,14 @@ rpm-ostree install --idempotent \
    qemu-kvm \
    virt-manager
 
+# adds my kde specific packages
+rpm-ostree install --idempotent \
+   k3b \
+   kmail \
+   libadwaita \
+   libadwaita-qt5 \
+   libadwaita-qt6 \
+   merkuro
 
 /tmp/github-release-install.sh twpayne/chezmoi x86_64
 /tmp/github-release-install.sh LizardByte/Sunshine fedora-${RELEASE}-amd64
