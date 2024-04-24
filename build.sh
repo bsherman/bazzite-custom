@@ -47,7 +47,6 @@ rpm-ostree install --idempotent \
 # adds my kde specific packages
 rpm-ostree install --idempotent \
    k3b \
-   kmail \
    libadwaita \
    libadwaita-qt5 \
    libadwaita-qt6 \
