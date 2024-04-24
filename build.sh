@@ -26,31 +26,33 @@ rm /etc/yum.repos.d/negativo17-fedora-multimedia.repo
 
 # adds my custom packages
 rpm-ostree install --idempotent \
-   ipcalc \
-   iperf3 \
-   langpacks-en \
-   libvirt-daemon \
-   libvirt-daemon-config-network \
-   libvirt-daemon-driver-interface \
-   libvirt-daemon-driver-network \
-   libvirt-daemon-driver-nwfilter \
-   libvirt-daemon-driver-qemu \
-   libvirt-daemon-driver-secret \
-   libvirt-daemon-driver-storage-core \
-   libvirt-daemon-driver-storage-disk \
-   libvirt-daemon-driver-storage-scsi \
-   netcat \
-   nmap \
-   qemu-kvm \
-   virt-manager
+  ipcalc \
+  iperf3 \
+  langpacks-en \
+  libvirt-daemon \
+  libvirt-daemon-config-network \
+  libvirt-daemon-driver-interface \
+  libvirt-daemon-driver-network \
+  libvirt-daemon-driver-nwfilter \
+  libvirt-daemon-driver-qemu \
+  libvirt-daemon-driver-secret \
+  libvirt-daemon-driver-storage-core \
+  libvirt-daemon-driver-storage-disk \
+  libvirt-daemon-driver-storage-scsi \
+  netcat \
+  nmap \
+  qemu-kvm \
+  virt-manager
 
 # adds my kde specific packages
 rpm-ostree install --idempotent \
-   k3b \
-   libadwaita \
-   libadwaita-qt5 \
-   libadwaita-qt6 \
-   merkuro
+  k3b \
+  kdepim-runtime \
+  kmail \
+  libadwaita \
+  libadwaita-qt5 \
+  libadwaita-qt6 \
+  merkuro
 
 /tmp/github-release-install.sh twpayne/chezmoi x86_64
 /tmp/github-release-install.sh LizardByte/Sunshine fedora-${RELEASE}-amd64
