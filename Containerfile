@@ -36,7 +36,7 @@ ARG SOURCE_IMAGE="bazzite"
 ARG SOURCE_SUFFIX=""
 
 ## SOURCE_TAG arg must be a version built by ublue: eg, 39, 40, gts or latest
-ARG SOURCE_TAG="40-testing"
+ARG SOURCE_TAG="40"
 
 
 ### 2. SOURCE IMAGE
