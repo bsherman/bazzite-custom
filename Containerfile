@@ -51,6 +51,9 @@ COPY --from=ghcr.io/ublue-os/akmods:fsync-40 /rpms/kmods/*xpadneo*.rpm /tmp/akmo
 
 COPY *.sh /tmp/
 
+# restore some files modified/removed by bazzite
+COPY system_files/usr /usr
+
 RUN mkdir -p /var/lib/alternatives && \
     /tmp/build.sh && \
     ostree container commit
